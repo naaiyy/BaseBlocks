@@ -1,4 +1,4 @@
-import type { OpenEditorTheme } from "@openeditor/ui";
+import type { OpenEditorTheme } from "@openeditor/react";
 
 export const baseBlocksOpenEditorTheme = {
   surface: "var(--background)",

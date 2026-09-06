@@ -11,8 +11,8 @@ import { searchBlock } from "@baseblocks/openeditor-contracts/core-blocks";
 import { Input } from "@baseblocks/ui/input";
 import { Label } from "@baseblocks/ui/label";
 import { Switch } from "@baseblocks/ui/switch";
-import { defineOpenEditorCustomBlockEditor } from "@openeditor/custom-block/editor";
-import { defineOpenEditorCustomBlockViewer } from "@openeditor/custom-block/viewer";
+import { defineOpenEditorCustomBlockEditor } from "@openeditor/react/extensions/editor";
+import { defineOpenEditorCustomBlockViewer } from "@openeditor/react/extensions/viewer";
 import { useId } from "react";
 
 function SearchPreview({ value }: { value: Required<SearchContent> }) {

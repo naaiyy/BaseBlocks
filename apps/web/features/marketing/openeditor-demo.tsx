@@ -9,12 +9,13 @@ import {
 import { OpenEditorContent, useOpenEditorController } from "@openeditor/react";
 import {
   OpenEditorBlockMenu,
+  OpenEditorEmojiPickerProvider,
   OpenEditorSelectionBubble,
   OpenEditorSlashMenu,
   OpenEditorTableMenu,
   OpenEditorThemeProvider,
-} from "@openeditor/ui";
-import "@openeditor/ui/styles.css";
+} from "@openeditor/react";
+import "@openeditor/react/styles.css";
 import { useRef } from "react";
 import { EditorParticleField } from "./editor-particle-field";
 
@@ -291,28 +292,30 @@ export function OpenEditorDemo() {
   });
 
   return (
-    <OpenEditorThemeProvider theme={baseBlocksOpenEditorTheme}>
-      <div className="landing-editor-demo">
-        <div
-          aria-hidden="true"
-          className="landing-editor-contour-target"
-          ref={contourRef}
-        />
-        <EditorParticleField contourRef={contourRef} shape="masses" />
-        <div className="landing-editor-paper">
-          <div className="landing-editor-paper-inner">
-            <OpenEditorContent
-              className="oe-canvas landing-editor-canvas"
-              controller={controller}
-            />
+    <OpenEditorEmojiPickerProvider>
+      <OpenEditorThemeProvider theme={baseBlocksOpenEditorTheme}>
+        <div className="landing-editor-demo">
+          <div
+            aria-hidden="true"
+            className="landing-editor-contour-target"
+            ref={contourRef}
+          />
+          <EditorParticleField contourRef={contourRef} shape="masses" />
+          <div className="landing-editor-paper">
+            <div className="landing-editor-paper-inner">
+              <OpenEditorContent
+                className="oe-canvas landing-editor-canvas"
+                controller={controller}
+              />
+            </div>
           </div>
-        </div>
 
-        <OpenEditorBlockMenu controller={controller} />
-        <OpenEditorSelectionBubble controller={controller} />
-        <OpenEditorTableMenu controller={controller} />
-        <OpenEditorSlashMenu controller={controller} />
-      </div>
-    </OpenEditorThemeProvider>
+          <OpenEditorBlockMenu controller={controller} />
+          <OpenEditorSelectionBubble controller={controller} />
+          <OpenEditorTableMenu controller={controller} />
+          <OpenEditorSlashMenu controller={controller} />
+        </div>
+      </OpenEditorThemeProvider>
+    </OpenEditorEmojiPickerProvider>
   );
 }

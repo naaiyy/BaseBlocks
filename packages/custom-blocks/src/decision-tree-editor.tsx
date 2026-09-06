@@ -40,7 +40,7 @@ import { closestCenter } from "@dnd-kit/collision";
 import { PointerActivationConstraints, PointerSensor } from "@dnd-kit/dom";
 import { DragDropProvider, KeyboardSensor } from "@dnd-kit/react";
 import { isSortable, useSortable } from "@dnd-kit/react/sortable";
-import { defineOpenEditorCustomBlockEditor } from "@openeditor/custom-block/editor";
+import { defineOpenEditorCustomBlockEditor } from "@openeditor/react/extensions/editor";
 import {
   createDocument,
   getDocumentText,

@@ -129,7 +129,7 @@ describe("parseOpenEditorDocument", () => {
           },
         ],
       }),
-    ).toThrow("No migration exists from version 1");
+    ).toThrow("Stored version 1 does not match supported version 2");
     expect(() =>
       parseOpenEditorDocument({
         type: "doc",
@@ -146,7 +146,7 @@ describe("parseOpenEditorDocument", () => {
           },
         ],
       }),
-    ).toThrow("Stored version 3 is newer");
+    ).toThrow("Stored version 3 does not match supported version 2");
     expect(() =>
       parseOpenEditorDocument({
         type: "doc",

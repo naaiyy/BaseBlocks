@@ -2,7 +2,7 @@
 
 /* oxlint-disable react-doctor/nextjs-no-img-element -- Managed assets are host-resolved private or blob URLs. This framework-neutral package must not depend on the Next.js image pipeline. */
 
-import { defineOpenEditorCustomBlockViewer } from "@openeditor/custom-block/viewer";
+import { defineOpenEditorCustomBlockViewer } from "@openeditor/react/extensions/viewer";
 import { getDocumentText } from "@openeditor/document";
 import {
   ArrowLeft01Icon,
@@ -22,7 +22,7 @@ import {
   SelectValue,
 } from "@baseblocks/ui/select";
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { OpenEditorCustomBlockViewerHost } from "@openeditor/custom-block/viewer";
+import type { OpenEditorCustomBlockViewerHost } from "@openeditor/react/extensions/viewer";
 import type { QuickLink } from "./quick-links";
 import { decisionTreeBlock, directoryBlock, quickLinksBlock } from "./index";
 import {

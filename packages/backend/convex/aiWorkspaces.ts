@@ -1,5 +1,8 @@
 import { v } from "convex/values";
-import { fingerprintSnapshotPage, type Snapshot } from "@openeditor/mutations";
+import {
+  fingerprintSnapshotPage,
+  type Snapshot,
+} from "@baseblocks/openeditor-contracts/snapshots";
 import type { JsonObject } from "@openeditor/document";
 import { query } from "./_generated/server";
 import {

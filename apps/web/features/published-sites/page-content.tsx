@@ -15,8 +15,8 @@ import type {
   OpenEditorPageRuntime,
 } from "@openeditor/document";
 import { OpenEditorViewer } from "@openeditor/react";
-import { OpenEditorThemeProvider } from "@openeditor/ui";
-import "@openeditor/ui/styles.css";
+import { OpenEditorThemeProvider } from "@openeditor/react";
+import "@openeditor/react/styles.css";
 import type { PublishedPageTarget } from "./page-targets";
 
 const EMPTY_PAGE_TARGETS = new Map<string, PublishedPageTarget>();

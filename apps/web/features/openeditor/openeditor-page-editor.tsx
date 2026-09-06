@@ -20,6 +20,7 @@ import type {
 } from "@openeditor/document";
 import {
   OpenEditorContent,
+  OpenEditorEmojiPickerProvider,
   OpenEditorPageHeader,
   type OpenEditorSlashMenuItem,
   OpenEditorViewer,
@@ -31,8 +32,8 @@ import {
   OpenEditorSlashMenu,
   OpenEditorTableMenu,
   OpenEditorThemeProvider,
-} from "@openeditor/ui";
-import "@openeditor/ui/styles.css";
+} from "@openeditor/react";
+import "@openeditor/react/styles.css";
 import { useMutation } from "convex/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
@@ -184,33 +185,35 @@ export function OpenEditorPageEditor({
     : undefined;
 
   return (
-    <SiteRenderActionsProvider actions={{ siteId }}>
-      {readOpenEditorPageTabs(document) ? (
-        <OpenEditorTabbedPageEditor
-          attachmentRuntime={attachmentRuntime}
-          canEdit={canEdit}
-          fullWidthStyle={fullWidthStyle}
-          imageRuntime={imageRuntime}
-          document={document}
-          onChange={onChange}
-          pageHeading={pageHeading}
-          pageRuntime={pageRuntime}
-          preview={preview}
-        />
-      ) : (
-        <OpenEditorDocumentEditor
-          attachmentRuntime={attachmentRuntime}
-          canEdit={canEdit}
-          fullWidthStyle={fullWidthStyle}
-          imageRuntime={imageRuntime}
-          document={document}
-          onChange={onChange}
-          pageHeading={pageHeading}
-          pageRuntime={pageRuntime}
-          preview={preview}
-        />
-      )}
-    </SiteRenderActionsProvider>
+    <OpenEditorEmojiPickerProvider>
+      <SiteRenderActionsProvider actions={{ siteId }}>
+        {readOpenEditorPageTabs(document) ? (
+          <OpenEditorTabbedPageEditor
+            attachmentRuntime={attachmentRuntime}
+            canEdit={canEdit}
+            fullWidthStyle={fullWidthStyle}
+            imageRuntime={imageRuntime}
+            document={document}
+            onChange={onChange}
+            pageHeading={pageHeading}
+            pageRuntime={pageRuntime}
+            preview={preview}
+          />
+        ) : (
+          <OpenEditorDocumentEditor
+            attachmentRuntime={attachmentRuntime}
+            canEdit={canEdit}
+            fullWidthStyle={fullWidthStyle}
+            imageRuntime={imageRuntime}
+            document={document}
+            onChange={onChange}
+            pageHeading={pageHeading}
+            pageRuntime={pageRuntime}
+            preview={preview}
+          />
+        )}
+      </SiteRenderActionsProvider>
+    </OpenEditorEmojiPickerProvider>
   );
 }
 

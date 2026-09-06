@@ -6,12 +6,12 @@ import {
   updateQuickLink,
   safeQuickLinkHref,
 } from "./quick-links";
-import { quickLinksBlock } from "./index";
+import { migrateQuickLinksV1 } from "./migrations";
 
 describe("quick links data", () => {
   test("migrates website links and removes unsupported app links and icons", () => {
     expect(
-      quickLinksBlock.migrate?.({
+      migrateQuickLinksV1({
         version: 1,
         data: {
           links: [
