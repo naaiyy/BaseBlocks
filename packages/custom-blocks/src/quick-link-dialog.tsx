@@ -17,7 +17,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@baseblocks/ui/tooltip";
-import type { OpenEditorCustomBlockEditorHost } from "@openeditor/custom-block/editor";
+import type { OpenEditorCustomBlockEditorHost } from "@openeditor/react/extensions/editor";
 import { useEffect, useRef, useState } from "react";
 import { QuickLinkEditorAsset } from "./quick-link-editor-asset";
 import type { QuickLink } from "./quick-links";
@@ -63,13 +63,13 @@ export function QuickLinkDialog({
   const mounted = useRef(true);
   const resolved = host.links?.resolve({ href: draft.url, kind: "website" });
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
       mounted.current = false;
       operation.current += 1;
-    },
-    [],
-  );
+    };
+  }, []);
   useEffect(() => {
     draftRef.current = draft;
   }, [draft]);
@@ -121,7 +121,9 @@ export function QuickLinkDialog({
               id: draft.id ?? crypto.randomUUID(),
               title: draft.title.trim(),
               url: draft.url.trim(),
-              imageAssetId: draft.image.currentId,
+              ...(draft.image.currentId
+                ? { imageAssetId: draft.image.currentId }
+                : {}),
             });
           }}
         >

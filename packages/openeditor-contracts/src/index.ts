@@ -1,9 +1,9 @@
+import * as v from "valibot";
 import {
   createDocument,
   createOpenEditorDocumentContract,
   validateDocument,
   type BlockSpec,
-  type OpenEditorValueSchema,
 } from "@openeditor/document";
 import { validateOpenEditorEngineDocument } from "@openeditor/engine";
 import {
@@ -13,40 +13,18 @@ import {
   defaultNodeSpecs,
 } from "@openeditor/document";
 
-const text = (maxLength: number): OpenEditorValueSchema => ({
-  type: "string",
-  maxLength,
+const tabSchema = v.strictObject({
+  id: v.pipe(v.string(), v.nonEmpty(), v.maxLength(200)),
+  label: v.pipe(v.string(), v.maxLength(500)),
+  document: v.custom(
+    (value) => validateBaseBlocksNestedDocument(value).valid,
+    ({ input }) =>
+      validateBaseBlocksNestedDocument(input)
+        .issues.slice(0, 10)
+        .map((issue) => `Nested tab document ${issue.path}: ${issue.message}`)
+        .join("; "),
+  ),
 });
-const identifier: OpenEditorValueSchema = {
-  type: "string",
-  minLength: 1,
-  maxLength: 200,
-};
-
-const tabSchema: OpenEditorValueSchema = {
-  type: "object",
-  properties: {
-    id: identifier,
-    label: text(500),
-    document: {
-      type: "object",
-      additionalProperties: true,
-      validate: (value) => {
-        const result = validateBaseBlocksNestedDocument(value);
-        return result.valid
-          ? null
-          : result.issues
-              .slice(0, 10)
-              .map(
-                (issue) =>
-                  `Nested tab document ${issue.path}: ${issue.message}`,
-              );
-      },
-    },
-  },
-  required: ["id", "label", "document"],
-  additionalProperties: false,
-};
 
 /** Page Tabs is a page-level BaseBlocks container, not an installable block. */
 export const pageTabsBlockSpec: BlockSpec = {
@@ -76,39 +54,19 @@ export const pageTabsBlockSpec: BlockSpec = {
     plainText: "unsupported",
   },
   schema: {
-    attributes: {
-      properties: {
-        tabs: {
-          type: "object",
-          properties: {
-            tabs: {
-              type: "array",
-              items: tabSchema,
-              minItems: 1,
-              maxItems: 100,
-              validate: (value) => {
-                if (!Array.isArray(value)) return null;
-                const ids = value.flatMap((item) =>
-                  item &&
-                  typeof item === "object" &&
-                  !Array.isArray(item) &&
-                  typeof (item as { id?: unknown }).id === "string"
-                    ? [(item as { id: string }).id]
-                    : [],
-                );
-                return new Set(ids).size === ids.length
-                  ? null
-                  : "Page Tab IDs must be unique.";
-              },
-            },
-          },
-          required: ["tabs"],
-          additionalProperties: false,
-        },
-      },
-      required: ["tabs"],
-      additionalProperties: false,
-    },
+    attributes: v.strictObject({
+      tabs: v.strictObject({
+        tabs: v.pipe(
+          v.array(tabSchema),
+          v.minLength(1),
+          v.maxLength(100),
+          v.check(
+            (tabs) => new Set(tabs.map((tab) => tab.id)).size === tabs.length,
+            "Page Tab IDs must be unique.",
+          ),
+        ),
+      }),
+    }),
     content: false,
     text: "forbidden",
     marks: false,

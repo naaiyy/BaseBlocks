@@ -10,7 +10,8 @@
     "./block-registry": "./src/block-registry.ts",
     "./core-blocks": "./src/core-blocks.ts",
     "./page-projection": "./src/page-projection.ts",
-    "./portable-export": "./src/portable-export.ts"
+    "./portable-export": "./src/portable-export.ts",
+    "./snapshots": "./src/snapshots/index.ts"
   },
   "scripts": {
     "check-types": "tsc --noEmit",
@@ -19,8 +20,9 @@
   },
   "dependencies": {
     "@baseblocks/custom-blocks": "workspace:*",
-    "@openeditor/document": "0.0.55",
-    "@openeditor/engine": "0.0.55"
+    "@openeditor/document": "1.0.0",
+    "@openeditor/engine": "1.0.0",
+    "valibot": "^1.4.2"
   },
   "devDependencies": {
     "@baseblocks/tsconfig": "workspace:*",

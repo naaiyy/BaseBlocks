@@ -41,15 +41,14 @@ describe("release detail diff", () => {
             attrs: {
               "openeditor-id": "quick-links-asset",
               blockId: "baseblocks.quick-links",
-              version: 1,
+              version: 2,
               data: {
                 links: [
                   {
                     id: "link-asset",
                     title: "Documentation",
                     url: "https://example.com",
-                    linkType: "website",
-                    artwork: { kind: "asset", assetId: "asset-123" },
+                    imageAssetId: "asset-123",
                   },
                 ],
               },

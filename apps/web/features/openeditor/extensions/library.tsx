@@ -23,8 +23,8 @@ import {
   SelectValue,
 } from "@baseblocks/ui/select";
 import { Switch } from "@baseblocks/ui/switch";
-import { defineOpenEditorCustomBlockEditor } from "@openeditor/custom-block/editor";
-import { defineOpenEditorCustomBlockViewer } from "@openeditor/custom-block/viewer";
+import { defineOpenEditorCustomBlockEditor } from "@openeditor/react/extensions/editor";
+import { defineOpenEditorCustomBlockViewer } from "@openeditor/react/extensions/viewer";
 import { useMutation, useQuery } from "convex/react";
 import { useId, useState } from "react";
 

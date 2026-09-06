@@ -6,7 +6,7 @@ import {
   Link02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { defineOpenEditorCustomBlockEditor } from "@openeditor/custom-block/editor";
+import { defineOpenEditorCustomBlockEditor } from "@openeditor/react/extensions/editor";
 import { useState } from "react";
 import { quickLinksBlock } from "./index";
 import { QuickLinkDialog } from "./quick-link-dialog";

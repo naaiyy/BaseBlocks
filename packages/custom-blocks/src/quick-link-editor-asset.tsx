@@ -2,7 +2,7 @@
 
 import { Image01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import type { OpenEditorCustomBlockEditorHost } from "@openeditor/custom-block/editor";
+import type { OpenEditorCustomBlockEditorHost } from "@openeditor/react/extensions/editor";
 import { useEffect, useRef, useState } from "react";
 import { QuickLinkAssetLoader } from "./quick-link-asset-loader";
 

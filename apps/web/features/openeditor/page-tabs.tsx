@@ -29,7 +29,7 @@ import {
   OpenEditorSelectionBubble,
   OpenEditorSlashMenu,
   OpenEditorTableMenu,
-} from "@openeditor/ui";
+} from "@openeditor/react";
 import {
   useCallback,
   useEffect,

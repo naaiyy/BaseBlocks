@@ -1,4 +1,4 @@
-import type { OpenEditorCustomBlockViewerHost } from "@openeditor/custom-block/viewer";
+import type { OpenEditorCustomBlockViewerHost } from "@openeditor/react/extensions/viewer";
 
 /** Keeps stale or unauthorized managed-asset results out of rendered links. */
 export class QuickLinkAssetLoader {

@@ -4,7 +4,7 @@ import {
   fingerprintSnapshotManifest,
   fingerprintSnapshotPage,
   type Snapshot,
-} from "@openeditor/mutations";
+} from "@baseblocks/openeditor-contracts/snapshots";
 import { assertAiWorkspaceFingerprints } from "./aiWorkspaceFingerprint";
 
 const document = { type: "doc" as const, version: 1 as const, content: [] };
