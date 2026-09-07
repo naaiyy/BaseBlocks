@@ -8,8 +8,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./editor": "./src/editor.tsx",
-    "./viewer": "./src/viewer.tsx",
-    "./migrations": "./src/migrations.ts"
+    "./viewer": "./src/viewer.tsx"
   },
   "scripts": {
     "check-types": "tsc --noEmit",
