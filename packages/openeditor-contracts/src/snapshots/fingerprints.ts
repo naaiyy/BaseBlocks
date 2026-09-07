@@ -5,7 +5,7 @@ import {
 } from "@openeditor/document";
 import {
   OPENEDITOR_MANIFEST_FORMAT,
-  OPENEDITOR_MUTATION_VERSION,
+  OPENEDITOR_MANIFEST_VERSION,
   type Snapshot,
   type SnapshotPage,
 } from "./types";
@@ -47,7 +47,7 @@ const manifestPageValue = (page: SnapshotPage): JsonValue => ({
  */
 export const createSnapshotManifest = (snapshot: Snapshot): JsonValue => ({
   format: OPENEDITOR_MANIFEST_FORMAT,
-  version: OPENEDITOR_MUTATION_VERSION,
+  version: OPENEDITOR_MANIFEST_VERSION,
   project: {
     id: snapshot.id,
     revision: snapshot.revision,

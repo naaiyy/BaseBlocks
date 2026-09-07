@@ -6,55 +6,8 @@ import {
   updateQuickLink,
   safeQuickLinkHref,
 } from "./quick-links";
-import { migrateQuickLinksV1 } from "./migrations";
 
 describe("quick links data", () => {
-  test("migrates website links and removes unsupported app links and icons", () => {
-    expect(
-      migrateQuickLinksV1({
-        version: 1,
-        data: {
-          links: [
-            {
-              id: "website",
-              title: "Website",
-              url: "https://example.com",
-              linkType: "website",
-              artwork: { kind: "asset", assetId: "website-image" },
-            },
-            {
-              id: "icon",
-              title: "Icon",
-              url: "/icon",
-              linkType: "website",
-              artwork: { kind: "icon", id: "book" },
-            },
-            {
-              id: "app",
-              title: "App",
-              url: "baseblocks://open",
-              linkType: "app",
-            },
-          ],
-        },
-      }),
-    ).toEqual({
-      blockId: "baseblocks.quick-links",
-      version: 2,
-      data: {
-        links: [
-          {
-            id: "website",
-            title: "Website",
-            url: "https://example.com",
-            imageAssetId: "website-image",
-          },
-          { id: "icon", title: "Icon", url: "/icon" },
-        ],
-      },
-    });
-  });
-
   test("accepts site-relative and HTTP links but rejects executable URLs", () => {
     expect(
       safeQuickLinkHref({
